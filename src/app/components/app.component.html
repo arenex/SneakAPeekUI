@@ -1,0 +1,37 @@
+<div class="app">
+  <sneak-header></sneak-header>
+
+  <section class="streams">
+    <ng-container *ngFor="let stream of streamService.currentStreams | keys">
+      <sneak-stream-frame [stream]="stream" (streamSelected)="selectedStream = $event">
+      </sneak-stream-frame>
+    </ng-container>
+    <sneak-new-stream class="grid" (addStreamDialog)="addStreamDialog()">
+    </sneak-new-stream>
+  </section>
+
+  <sneak-footer [refresh]="updateStreams.bind(this)"></sneak-footer>
+
+  <sneak-modal [ngClass]="{
+        backdrop: true,
+        hidden: !showNewStreamInput
+      }" [show]="showNewStreamInput" [onSubmit]="submitNewStream.bind(this)" [onClose]="cancelNewStream.bind(this)">
+    <sneak-text-input [value]="newStreamName" (keyPress)="keyPress($event)" (valueChanged)="inputTyped($event)" [placeholder]="inputPlaceholder">
+    </sneak-text-input>
+  </sneak-modal>
+
+  <sneak-modal *ngIf="selectedStream != null" [ngClass]="{
+        backdrop: true,
+        bigStream: true,
+        hidden: !selectedStream
+      }" [show]="selectedStream" [onClose]="closeSelectedStream.bind(this)">
+    <sneak-stream-frame [stream]="streamService.currentStreams[selectedStream]" [enableRefresh]="!bigStreamPlaying" [enableRemove]="false">
+    </sneak-stream-frame>
+    <div class="playarea">
+      <button *ngIf="!bigStreamPlaying" class="play" (click)="loadStreamVideo()">O
+      </button>
+      <div #vid></div>
+    </div>
+  </sneak-modal>
+
+</div>

@@ -1,0 +1,11 @@
+<div class="backdrop">
+  <div *ngIf="show" class="modal">
+    <ng-content></ng-content>
+    <div class="buttons">
+      <button *ngIf="onSubmit" class="button submit-button" (click)="onSubmit()">✓
+      </button>
+      <button *ngIf="onClose" class="button remove-button" (click)="onClose()">X
+      </button>
+    </div>
+  </div>
+</div>

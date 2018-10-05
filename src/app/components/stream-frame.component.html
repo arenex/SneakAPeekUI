@@ -1,0 +1,22 @@
+<figure *ngIf="streamObj" class="stream">
+  <div [ngClass]="{
+          'preview': true,
+          'loading': streamObj.cssLoading,
+          'invalid': streamObj.cssInvalid,
+          'errored': streamObj.cssErrored
+        }" (click)="streamClicked()">
+    <sneak-image [imageClass]="classTop" (imageLoaded)="imageReloaded()" [src]="srcTop">
+    </sneak-image>
+    <sneak-image [imageClass]="classBot" [src]="srcBot">
+    </sneak-image>
+  </div>
+  <figcaption>
+    <span class="stream-name">
+      {{streamObj.name}}
+    </span>
+    <button *ngIf="enableRefresh" class="button refresh-button" (click)="refresh()">↻
+    </button>
+    <button *ngIf="enableRemove" class="button remove-button" (click)="remove()">X
+    </button>
+  </figcaption>
+</figure>
