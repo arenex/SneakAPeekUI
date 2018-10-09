@@ -12,4 +12,4 @@ A web app that allows keeping track of your favourite Twitch streamers. Adding c
 3) open index.html in browser and make sure SneakAPeek server is running
 
 ### Demo
-[![PlayDemo](src/assets/playdemo.png)](http://vadimstark.com/Projects/SneakAPeek/)
+[Try now](http://vadimstark.com/Projects/SneakAPeek/)
